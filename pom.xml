@@ -29,7 +29,7 @@
 		Maven Information
 	-->
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>org.pircbotx</groupId>
+	<groupId>com.abonforti</groupId>
 	<artifactId>pircbotx</artifactId>
 	<packaging>jar</packaging>
 	<version>2.3-SNAPSHOT</version>
@@ -52,45 +52,46 @@
 	</licenses>
 
 	<organization>
-		<name>Leon Blakey</name>
+		<name>Alessio Bonforti</name>
+		<url>https://github.com/abonforti</url>
 	</organization>
 
 	<developers>
 		<developer>
-			<id>TheLQ</id>
-			<name>Leon Blakey</name>
-			<email>lord.quackstar@gmail.com</email>
+			<id>abonforti</id>
+			<name>Alessio Bonforti</name>
+			<email>a.bonforti@gmail.com</email>
 			<roles>
 				<role>developer</role>
 			</roles>
-			<timezone>-5</timezone>
+			<timezone>+1</timezone>
 		</developer>
 	</developers>
 
 	<issueManagement>
 		<system>Github</system>
-		<url>http://github.com/pircbotx/pircbotx/issues</url>
+		<url>https://github.com/abonforti/pircbotx/issues</url>
 	</issueManagement>
         
-	<ciManagement>
+<!--	<ciManagement>
 		<system>Travis-CI</system>
 		<url>http://travis-ci.org/pircbotx/pircbotx</url>
-	</ciManagement>
+	</ciManagement>-->
 
-	<scm>
+<!--	<scm>
 		<connection>scm:git:https://github.com/pircbotx/pircbotx.git</connection>
 		<developerConnection>scm:git:https://github.com/pircbotx/pircbotx.git</developerConnection>
 		<url>https://github.com/pircbotx/pircbotx.git</url>
-	</scm>
+	</scm>-->
 	
-	<mailingLists>
+<!--	<mailingLists>
 		<mailingList>
 			<name>pircbotx</name>
 			<subscribe>pircbotx-subscribe@googlegroups.com</subscribe>
 			<unsubscribe>pircbotx-unsubscribe@googlegroups.com</unsubscribe>
 			<archive>http://groups.google.com/group/pircbotx/</archive>
 		</mailingList>
-	</mailingLists>
+	</mailingLists>-->
 
 	<prerequisites>
 		<maven>3.0.4</maven>
@@ -230,7 +231,7 @@
 					</compilerArgs>
 				</configuration>
 				<!--Do NOT show depreciation in test compile-->
-				<executions>
+				<!--<executions>
 					<execution>
 						<id>default-testCompile</id>
 						<phase>test-compile</phase>
@@ -244,7 +245,7 @@
 							<goal>testCompile</goal>
 						</goals>
 					</execution>                  
-				</executions>
+				</executions>-->
 			</plugin>
 			<!-- Update version in PircBotX.java -->
 			<plugin>
