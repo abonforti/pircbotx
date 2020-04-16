@@ -14,19 +14,23 @@
  *
  * You should have received a copy of the GNU General Public License along with
  * PircBotX. If not, see <http://www.gnu.org/licenses/>.
+ *
+ * This is a custom version developed by Alessio Bonnforti for Azzurra IRC Network
+ * Please do not contact directly Leon Blakey in case of issue using this repository
+ * as the customization might be not done by him
  */
 package org.pircbotx.hooks.managers;
 
 import com.google.common.collect.ImmutableSet;
+import org.apache.commons.lang3.concurrent.BasicThreadFactory;
+import org.pircbotx.hooks.Event;
+import org.pircbotx.hooks.Listener;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.atomic.AtomicInteger;
-import org.apache.commons.lang3.concurrent.BasicThreadFactory;
-import org.pircbotx.hooks.Event;
-import org.pircbotx.hooks.Listener;
 
 /**
  * ThreadListenerManager with additional dedicated background threads. Normal

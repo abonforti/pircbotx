@@ -14,8 +14,17 @@
  *
  * You should have received a copy of the GNU General Public License along with
  * PircBotX. If not, see <http://www.gnu.org/licenses/>.
+ *
+ * This is a custom version developed by Alessio Bonnforti for Azzurra IRC Network
+ * Please do not contact directly Leon Blakey in case of issue using this repository
+ * as the customization might be not done by him
  */
 package org.pircbotx.hooks;
+
+import lombok.NonNull;
+import lombok.extern.slf4j.Slf4j;
+import org.pircbotx.PircBotX;
+import org.pircbotx.hooks.types.GenericEvent;
 
 import java.io.Closeable;
 import java.util.ArrayList;
@@ -23,10 +32,6 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.TimeUnit;
-import lombok.NonNull;
-import lombok.extern.slf4j.Slf4j;
-import org.pircbotx.PircBotX;
-import org.pircbotx.hooks.types.GenericEvent;
 
 /**
  * Stores all events in a queue for processing. This is useful for sequential

@@ -14,35 +14,26 @@
  *
  * You should have received a copy of the GNU General Public License along with
  * PircBotX. If not, see <http://www.gnu.org/licenses/>.
+ *
+ * This is a custom version developed by Alessio Bonnforti for Azzurra IRC Network
+ * Please do not contact directly Leon Blakey in case of issue using this repository
+ * as the customization might be not done by him
  */
 package org.pircbotx;
 
-import static com.google.common.base.Preconditions.checkArgument;
-import static com.google.common.base.Preconditions.checkNotNull;
-
-import java.io.File;
-import java.io.IOException;
-import java.net.InetAddress;
-import java.net.Socket;
-import java.nio.charset.Charset;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Locale;
-import java.util.Map;
-
-import javax.net.SocketFactory;
-
+import com.google.common.collect.ImmutableList;
+import com.google.common.collect.ImmutableMap;
+import com.google.common.collect.ImmutableSortedMap;
+import com.google.common.collect.Lists;
+import lombok.Data;
+import lombok.NonNull;
+import lombok.ToString;
+import lombok.experimental.Accessors;
 import org.apache.commons.lang3.StringUtils;
 import org.pircbotx.cap.CapHandler;
 import org.pircbotx.cap.EnableCapHandler;
-import org.pircbotx.dcc.DccHandler;
+import org.pircbotx.dcc.*;
 import org.pircbotx.dcc.DccHandler.PendingFileTransfer;
-import org.pircbotx.dcc.ReceiveChat;
-import org.pircbotx.dcc.ReceiveFileTransfer;
-import org.pircbotx.dcc.SendChat;
-import org.pircbotx.dcc.SendFileTransfer;
 import org.pircbotx.delay.Delay;
 import org.pircbotx.delay.StaticDelay;
 import org.pircbotx.delay.StaticReadonlyDelay;
@@ -51,22 +42,18 @@ import org.pircbotx.hooks.CoreHooks;
 import org.pircbotx.hooks.Listener;
 import org.pircbotx.hooks.managers.ListenerManager;
 import org.pircbotx.hooks.managers.ThreadedListenerManager;
-import org.pircbotx.output.OutputCAP;
-import org.pircbotx.output.OutputChannel;
-import org.pircbotx.output.OutputDCC;
-import org.pircbotx.output.OutputIRC;
-import org.pircbotx.output.OutputRaw;
-import org.pircbotx.output.OutputUser;
+import org.pircbotx.output.*;
 
-import com.google.common.collect.ImmutableList;
-import com.google.common.collect.ImmutableMap;
-import com.google.common.collect.ImmutableSortedMap;
-import com.google.common.collect.Lists;
+import javax.net.SocketFactory;
+import java.io.File;
+import java.io.IOException;
+import java.net.InetAddress;
+import java.net.Socket;
+import java.nio.charset.Charset;
+import java.util.*;
 
-import lombok.Data;
-import lombok.NonNull;
-import lombok.ToString;
-import lombok.experimental.Accessors;
+import static com.google.common.base.Preconditions.checkArgument;
+import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
  * Immutable configuration for PircBotX created from

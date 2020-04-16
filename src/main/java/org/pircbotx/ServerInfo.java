@@ -14,13 +14,14 @@
  *
  * You should have received a copy of the GNU General Public License along with
  * PircBotX. If not, see <http://www.gnu.org/licenses/>.
+ *
+ * This is a custom version developed by Alessio Bonnforti for Azzurra IRC Network
+ * Please do not contact directly Leon Blakey in case of issue using this repository
+ * as the customization might be not done by him
  */
 package org.pircbotx;
 
 import com.google.common.collect.ImmutableMap;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.StringTokenizer;
 import lombok.AccessLevel;
 import lombok.Data;
 import lombok.Setter;
@@ -28,6 +29,10 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.StringTokenizer;
 
 /**
  * This is a giant info bean of various things about the server. This is

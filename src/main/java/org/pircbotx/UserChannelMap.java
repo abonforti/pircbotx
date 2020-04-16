@@ -14,6 +14,10 @@
  *
  * You should have received a copy of the GNU General Public License along with
  * PircBotX. If not, see <http://www.gnu.org/licenses/>.
+ *
+ * This is a custom version developed by Alessio Bonnforti for Azzurra IRC Network
+ * Please do not contact directly Leon Blakey in case of issue using this repository
+ * as the customization might be not done by him
  */
 package org.pircbotx;
 
@@ -21,17 +25,16 @@ import com.google.common.collect.HashMultimap;
 import com.google.common.collect.ImmutableMultimap;
 import com.google.common.collect.ImmutableSortedSet;
 import com.google.common.collect.Multimap;
-
-import java.util.Map;
-import java.util.concurrent.locks.Lock;
-import java.util.concurrent.locks.ReentrantReadWriteLock;
-
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.pircbotx.snapshot.ChannelSnapshot;
 import org.pircbotx.snapshot.UserChannelMapSnapshot;
 import org.pircbotx.snapshot.UserSnapshot;
+
+import java.util.Map;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 /**
  * A many to many map of users to channels.

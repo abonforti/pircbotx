@@ -14,12 +14,19 @@
  *
  * You should have received a copy of the GNU General Public License along with
  * PircBotX. If not, see <http://www.gnu.org/licenses/>.
+ *
+ * This is a custom version developed by Alessio Bonnforti for Azzurra IRC Network
+ * Please do not contact directly Leon Blakey in case of issue using this repository
+ * as the customization might be not done by him
  */
 package org.pircbotx;
 
-import java.util.UUID;
-import java.util.concurrent.CountDownLatch;
-
+import com.google.common.collect.ImmutableList;
+import com.google.common.collect.ImmutableSortedSet;
+import com.google.common.collect.Iterators;
+import com.google.common.collect.PeekingIterator;
+import lombok.*;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.concurrent.AtomicSafeInitializer;
 import org.apache.commons.lang3.concurrent.ConcurrentException;
@@ -28,17 +35,8 @@ import org.pircbotx.hooks.managers.ThreadedListenerManager;
 import org.pircbotx.output.OutputChannel;
 import org.pircbotx.snapshot.ChannelSnapshot;
 
-import com.google.common.collect.ImmutableList;
-import com.google.common.collect.ImmutableSortedSet;
-import com.google.common.collect.Iterators;
-import com.google.common.collect.PeekingIterator;
-
-import lombok.AccessLevel;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
-import lombok.extern.slf4j.Slf4j;
+import java.util.UUID;
+import java.util.concurrent.CountDownLatch;
 
 /**
  * Represents a Channel that we're joined to.

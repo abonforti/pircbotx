@@ -14,16 +14,17 @@
  *
  * You should have received a copy of the GNU General Public License along with
  * PircBotX. If not, see <http://www.gnu.org/licenses/>.
+ *
+ * This is a custom version developed by Alessio Bonnforti for Azzurra IRC Network
+ * Please do not contact directly Leon Blakey in case of issue using this repository
+ * as the customization might be not done by him
  */
 package org.pircbotx.output;
 
-import static com.google.common.base.Preconditions.checkArgument;
-import static com.google.common.base.Preconditions.checkNotNull;
-
-import java.io.IOException;
-import java.util.List;
-import java.util.concurrent.locks.ReentrantLock;
-
+import com.google.common.base.Splitter;
+import com.google.common.util.concurrent.RateLimiter;
+import lombok.NonNull;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.text.WordUtils;
 import org.pircbotx.PircBotX;
@@ -31,11 +32,12 @@ import org.pircbotx.Utils;
 import org.slf4j.Marker;
 import org.slf4j.MarkerFactory;
 
-import com.google.common.base.Splitter;
-import com.google.common.util.concurrent.RateLimiter;
+import java.io.IOException;
+import java.util.List;
+import java.util.concurrent.locks.ReentrantLock;
 
-import lombok.NonNull;
-import lombok.extern.slf4j.Slf4j;
+import static com.google.common.base.Preconditions.checkArgument;
+import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
  * Send raw lines to the server with locking and message delay support.

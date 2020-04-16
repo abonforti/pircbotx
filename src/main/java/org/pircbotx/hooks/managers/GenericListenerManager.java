@@ -14,19 +14,23 @@
  *
  * You should have received a copy of the GNU General Public License along with
  * PircBotX. If not, see <http://www.gnu.org/licenses/>.
+ *
+ * This is a custom version developed by Alessio Bonnforti for Azzurra IRC Network
+ * Please do not contact directly Leon Blakey in case of issue using this repository
+ * as the customization might be not done by him
  */
 package org.pircbotx.hooks.managers;
 
 import com.google.common.collect.ImmutableSet;
+import lombok.extern.slf4j.Slf4j;
+import org.pircbotx.PircBotX;
+import org.pircbotx.hooks.Event;
+import org.pircbotx.hooks.Listener;
+import org.pircbotx.hooks.WaitForQueue;
+
 import java.util.ConcurrentModificationException;
 import java.util.HashSet;
 import java.util.Set;
-import lombok.extern.slf4j.Slf4j;
-import org.pircbotx.hooks.Event;
-import org.pircbotx.hooks.Listener;
-import org.pircbotx.PircBotX;
-import org.pircbotx.Utils;
-import org.pircbotx.hooks.WaitForQueue;
 
 /**
  * Generic ListenerManager based off of a normal event system. This is backed by

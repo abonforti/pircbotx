@@ -14,21 +14,24 @@
  *
  * You should have received a copy of the GNU General Public License along with
  * PircBotX. If not, see <http://www.gnu.org/licenses/>.
+ *
+ * This is a custom version developed by Alessio Bonnforti for Azzurra IRC Network
+ * Please do not contact directly Leon Blakey in case of issue using this repository
+ * as the customization might be not done by him
  */
 package org.pircbotx.dcc;
+
+import lombok.extern.slf4j.Slf4j;
+import org.pircbotx.PircBotX;
+import org.pircbotx.dcc.DccHandler.PendingFileTransfer;
+import org.pircbotx.exception.DccException;
+import org.pircbotx.exception.DccException.Reason;
 
 import java.io.File;
 import java.io.IOException;
 import java.io.RandomAccessFile;
 import java.nio.channels.FileChannel;
 import java.nio.channels.SocketChannel;
-
-import org.pircbotx.PircBotX;
-import org.pircbotx.dcc.DccHandler.PendingFileTransfer;
-import org.pircbotx.exception.DccException;
-import org.pircbotx.exception.DccException.Reason;
-
-import lombok.extern.slf4j.Slf4j;
 
 /**
  * Receive a file from a user and send acknowledgement. Report statistics about

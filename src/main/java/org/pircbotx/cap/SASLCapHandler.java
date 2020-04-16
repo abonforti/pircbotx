@@ -14,17 +14,20 @@
  *
  * You should have received a copy of the GNU General Public License along with
  * PircBotX. If not, see <http://www.gnu.org/licenses/>.
+ *
+ * This is a custom version developed by Alessio Bonnforti for Azzurra IRC Network
+ * Please do not contact directly Leon Blakey in case of issue using this repository
+ * as the customization might be not done by him
  */
 package org.pircbotx.cap;
 
 import com.google.common.collect.ImmutableList;
 import lombok.ToString;
-
-import java.nio.charset.StandardCharsets;
-
 import org.apache.commons.codec.binary.Base64;
 import org.pircbotx.PircBotX;
 import org.pircbotx.exception.CAPException;
+
+import java.nio.charset.StandardCharsets;
 
 /**
  *

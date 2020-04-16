@@ -14,17 +14,15 @@
  *
  * You should have received a copy of the GNU General Public License along with
  * PircBotX. If not, see <http://www.gnu.org/licenses/>.
+ *
+ * This is a custom version developed by Alessio Bonnforti for Azzurra IRC Network
+ * Please do not contact directly Leon Blakey in case of issue using this repository
+ * as the customization might be not done by him
  */
 package org.pircbotx.dcc;
 
-import java.io.File;
-import java.io.IOException;
-import java.net.Socket;
-import java.net.SocketTimeoutException;
-
 import lombok.Getter;
 import lombok.NonNull;
-
 import org.pircbotx.Configuration;
 import org.pircbotx.PircBotX;
 import org.pircbotx.User;
@@ -32,6 +30,11 @@ import org.pircbotx.dcc.DccHandler.PendingFileTransfer;
 import org.pircbotx.exception.DccException;
 import org.pircbotx.exception.DccException.Reason;
 import org.pircbotx.hooks.events.FileTransferCompleteEvent;
+
+import java.io.File;
+import java.io.IOException;
+import java.net.Socket;
+import java.net.SocketTimeoutException;
 
 /**
  * A general active DCC file transfer

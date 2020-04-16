@@ -16,6 +16,10 @@
     You should have received a copy of the GNU General Public License along with
     PircBotX. If not, see <http://www.gnu.org/licenses/>.
 
+    This is a custom version developed by Alessio Bonnforti for Azzurra IRC Network
+    Please do not contact directly Leon Blakey in case of issue using this repository
+    as the customization might be not done by him
+
 -->
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<!--Sonatype Parent POM-->
@@ -29,7 +33,7 @@
 		Maven Information
 	-->
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>com.abonforti</groupId>
+	<groupId>org.pircbotx</groupId>
 	<artifactId>pircbotx</artifactId>
 	<packaging>jar</packaging>
 	<version>2.3-SNAPSHOT</version>
@@ -53,7 +57,6 @@
 
 	<organization>
 		<name>Alessio Bonforti</name>
-		<url>https://github.com/abonforti</url>
 	</organization>
 
 	<developers>
@@ -73,26 +76,12 @@
 		<url>https://github.com/abonforti/pircbotx/issues</url>
 	</issueManagement>
         
-<!--	<ciManagement>
-		<system>Travis-CI</system>
-		<url>http://travis-ci.org/pircbotx/pircbotx</url>
-	</ciManagement>-->
-
-<!--	<scm>
-		<connection>scm:git:https://github.com/pircbotx/pircbotx.git</connection>
-		<developerConnection>scm:git:https://github.com/pircbotx/pircbotx.git</developerConnection>
-		<url>https://github.com/pircbotx/pircbotx.git</url>
-	</scm>-->
+	<scm>
+		<connection>scm:git:https://github.com/abonforti/pircbotx.git</connection>
+		<developerConnection>scm:git:https://github.com/abonforti/pircbotx.git</developerConnection>
+		<url>https://github.com/abonforti/pircbotx.git</url>
+	</scm>
 	
-<!--	<mailingLists>
-		<mailingList>
-			<name>pircbotx</name>
-			<subscribe>pircbotx-subscribe@googlegroups.com</subscribe>
-			<unsubscribe>pircbotx-unsubscribe@googlegroups.com</unsubscribe>
-			<archive>http://groups.google.com/group/pircbotx/</archive>
-		</mailingList>
-	</mailingLists>-->
-
 	<prerequisites>
 		<maven>3.0.4</maven>
 	</prerequisites>
@@ -116,40 +105,46 @@
 			<version>${lombok.version}</version>
 			<scope>provided</scope>
 		</dependency>
-		<dependency>
+<!--		<dependency>
 			<groupId>com.google.code.findbugs</groupId>
 			<artifactId>jsr305</artifactId>
 			<version>3.0.2</version>
 			<scope>provided</scope>
-		</dependency>
+		</dependency>-->
+
 		<!-- Commons Lang for useful utilities -->
 		<dependency>
 			<groupId>org.apache.commons</groupId>
 			<artifactId>commons-lang3</artifactId>
 			<version>3.9</version>
-		</dependency>		
+		</dependency>
+
 		<dependency>
 			<groupId>org.apache.commons</groupId>
 			<artifactId>commons-text</artifactId>
 			<version>1.8</version>
-		</dependency>		
+		</dependency>
+
 		<!-- Slf4j for logging -->
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-api</artifactId>
 		</dependency>
+
 		<!-- Commons codec for base64 -->
 		<dependency>
 			<groupId>commons-codec</groupId>
 			<artifactId>commons-codec</artifactId>
 			<version>1.14</version>
 		</dependency>
+
 		<!-- Guava for collections -->
 		<dependency>
 			<groupId>com.google.guava</groupId>
 			<artifactId>guava</artifactId>
 			<version>${guava.version}</version>
 		</dependency>
+
 		<!-- Use TestNG as testing framework -->
 		<dependency>
 			<groupId>org.testng</groupId>
@@ -157,6 +152,7 @@
 			<version>6.9.10</version>
 			<scope>test</scope>
 		</dependency>
+
 		<!-- Mockito for mocking test objects-->
 		<dependency>
 			<groupId>org.mockito</groupId>
@@ -164,12 +160,27 @@
 			<version>2.0.40-beta</version>
 			<scope>test</scope>
 		</dependency>
+
 		<!-- Logback for logging to console when testing -->
 		<dependency>
 			<groupId>ch.qos.logback</groupId>
 			<artifactId>logback-classic</artifactId>
 			<version>1.1.3</version>
 			<scope>test</scope>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-simple -->
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-simple</artifactId>
+			<version>1.7.30</version>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>commons-configuration</groupId>
+			<artifactId>commons-configuration</artifactId>
+			<version>1.10</version>
 		</dependency>
 	</dependencies>
 	
@@ -231,7 +242,7 @@
 					</compilerArgs>
 				</configuration>
 				<!--Do NOT show depreciation in test compile-->
-				<!--<executions>
+				<executions>
 					<execution>
 						<id>default-testCompile</id>
 						<phase>test-compile</phase>
@@ -245,7 +256,7 @@
 							<goal>testCompile</goal>
 						</goals>
 					</execution>                  
-				</executions>-->
+				</executions>
 			</plugin>
 			<!-- Update version in PircBotX.java -->
 			<plugin>
@@ -455,7 +466,7 @@
 						<artifactId>maven-javadoc-plugin</artifactId>
 						<version>2.10.3</version>
 						<configuration>
-							<defaultAuthor>Leon Blakey</defaultAuthor>
+							<defaultAuthor>Alessio Bonforti</defaultAuthor>
 							<defaultVersion>${project.version}</defaultVersion>
 							<sourcepath>target/delombok</sourcepath>
 							<!-- Temporarily disable Java 8 super strict doclint -->

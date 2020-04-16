@@ -14,21 +14,19 @@
  *
  * You should have received a copy of the GNU General Public License along with
  * PircBotX. If not, see <http://www.gnu.org/licenses/>.
+ *
+ * This is a custom version developed by Alessio Bonnforti for Azzurra IRC Network
+ * Please do not contact directly Leon Blakey in case of issue using this repository
+ * as the customization might be not done by him
  */
 package org.pircbotx;
 
-import static com.google.common.base.Preconditions.checkArgument;
-
-import java.io.Closeable;
-import java.util.EnumMap;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Locale;
-import java.util.Map;
-import java.util.Set;
-import java.util.concurrent.locks.Lock;
-import java.util.concurrent.locks.ReentrantReadWriteLock;
-
+import com.google.common.collect.ImmutableBiMap;
+import com.google.common.collect.ImmutableSortedSet;
+import com.google.common.collect.Maps;
+import lombok.AccessLevel;
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
 import org.apache.commons.lang3.StringUtils;
 import org.pircbotx.exception.DaoException;
 import org.pircbotx.hooks.events.UserListEvent;
@@ -38,13 +36,12 @@ import org.pircbotx.snapshot.UserChannelMapSnapshot;
 import org.pircbotx.snapshot.UserSnapshot;
 import org.pircbotx.tools.ConcurrentEnumMap;
 
-import com.google.common.collect.ImmutableBiMap;
-import com.google.common.collect.ImmutableSortedSet;
-import com.google.common.collect.Maps;
+import java.io.Closeable;
+import java.util.*;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantReadWriteLock;
 
-import lombok.AccessLevel;
-import lombok.NonNull;
-import lombok.RequiredArgsConstructor;
+import static com.google.common.base.Preconditions.checkArgument;
 
 /**
  * Model that creates and tracks Users and Channel and maintains relationships.

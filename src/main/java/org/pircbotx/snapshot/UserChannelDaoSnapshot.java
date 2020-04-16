@@ -14,17 +14,18 @@
  *
  * You should have received a copy of the GNU General Public License along with
  * PircBotX. If not, see <http://www.gnu.org/licenses/>.
+ *
+ * This is a custom version developed by Alessio Bonnforti for Azzurra IRC Network
+ * Please do not contact directly Leon Blakey in case of issue using this repository
+ * as the customization might be not done by him
  */
 package org.pircbotx.snapshot;
 
 import com.google.common.collect.ImmutableMap;
+import org.pircbotx.*;
+
 import java.util.EnumMap;
 import java.util.Locale;
-import org.pircbotx.PircBotX;
-import org.pircbotx.UserChannelDao;
-import org.pircbotx.UserChannelMap;
-import org.pircbotx.UserHostmask;
-import org.pircbotx.UserLevel;
 
 /**
  *

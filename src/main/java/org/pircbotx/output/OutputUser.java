@@ -14,11 +14,13 @@
  *
  * You should have received a copy of the GNU General Public License along with
  * PircBotX. If not, see <http://www.gnu.org/licenses/>.
+ *
+ * This is a custom version developed by Alessio Bonnforti for Azzurra IRC Network
+ * Please do not contact directly Leon Blakey in case of issue using this repository
+ * as the customization might be not done by him
  */
 package org.pircbotx.output;
 
-import java.io.File;
-import java.io.IOException;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.pircbotx.Channel;
@@ -27,6 +29,9 @@ import org.pircbotx.UserHostmask;
 import org.pircbotx.dcc.SendChat;
 import org.pircbotx.dcc.SendFileTransfer;
 import org.pircbotx.exception.DccException;
+
+import java.io.File;
+import java.io.IOException;
 
 /**
  * Send lines to a serverUser.

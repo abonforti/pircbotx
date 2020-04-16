@@ -14,18 +14,23 @@
  *
  * You should have received a copy of the GNU General Public License along with
  * PircBotX. If not, see <http://www.gnu.org/licenses/>.
+ *
+ * This is a custom version developed by Alessio Bonnforti for Azzurra IRC Network
+ * Please do not contact directly Leon Blakey in case of issue using this repository
+ * as the customization might be not done by him
  */
 package org.pircbotx;
 
-import org.pircbotx.snapshot.UserSnapshot;
 import com.google.common.collect.ImmutableSortedSet;
-import java.util.UUID;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 import org.pircbotx.hooks.WaitForQueue;
 import org.pircbotx.hooks.events.WhoisEvent;
+import org.pircbotx.snapshot.UserSnapshot;
+
+import java.util.UUID;
 
 /**
  * Represents a User on the server.

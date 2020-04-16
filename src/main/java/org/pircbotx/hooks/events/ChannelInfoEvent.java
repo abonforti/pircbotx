@@ -14,19 +14,21 @@
  *
  * You should have received a copy of the GNU General Public License along with
  * PircBotX. If not, see <http://www.gnu.org/licenses/>.
+ *
+ * This is a custom version developed by Alessio Bonnforti for Azzurra IRC Network
+ * Please do not contact directly Leon Blakey in case of issue using this repository
+ * as the customization might be not done by him
  */
 package org.pircbotx.hooks.events;
 
+import com.google.common.collect.ImmutableList;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NonNull;
 import org.pircbotx.ChannelListEntry;
 import org.pircbotx.PircBotX;
 import org.pircbotx.hooks.Event;
 import org.pircbotx.output.OutputIRC;
-
-import com.google.common.collect.ImmutableList;
-
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NonNull;
 
 /**
  * After calling the listChannels() method in PircBotX, the server will start to

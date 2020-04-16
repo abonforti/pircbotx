@@ -14,17 +14,20 @@
  *
  * You should have received a copy of the GNU General Public License along with
  * PircBotX. If not, see <http://www.gnu.org/licenses/>.
+ *
+ * This is a custom version developed by Alessio Bonnforti for Azzurra IRC Network
+ * Please do not contact directly Leon Blakey in case of issue using this repository
+ * as the customization might be not done by him
  */
 package org.pircbotx.hooks.events;
-
-import org.pircbotx.PircBotX;
-import org.pircbotx.hooks.Event;
-import org.pircbotx.hooks.types.GenericSnapshotEvent;
-import org.pircbotx.snapshot.UserChannelDaoSnapshot;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
+import org.pircbotx.PircBotX;
+import org.pircbotx.hooks.Event;
+import org.pircbotx.hooks.types.GenericSnapshotEvent;
+import org.pircbotx.snapshot.UserChannelDaoSnapshot;
 
 /**
  * This event is dispatched when we get disconnected. It is meant for the bot to

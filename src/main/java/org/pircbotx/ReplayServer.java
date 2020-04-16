@@ -14,18 +14,19 @@
  *
  * You should have received a copy of the GNU General Public License along with
  * PircBotX. If not, see <http://www.gnu.org/licenses/>.
+ *
+ * This is a custom version developed by Alessio Bonnforti for Azzurra IRC Network
+ * Please do not contact directly Leon Blakey in case of issue using this repository
+ * as the customization might be not done by him
  */
 package org.pircbotx;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.util.LinkedList;
-import java.util.Queue;
-
+import com.google.common.collect.Iterables;
+import lombok.Cleanup;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+import lombok.experimental.Delegate;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.time.DurationFormatUtils;
 import org.apache.commons.lang3.time.StopWatch;
@@ -36,14 +37,9 @@ import org.pircbotx.hooks.managers.GenericListenerManager;
 import org.pircbotx.hooks.managers.ListenerManager;
 import org.pircbotx.hooks.types.GenericMessageEvent;
 
-import com.google.common.collect.Iterables;
-import com.google.common.collect.Lists;
-
-import lombok.Cleanup;
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-import lombok.experimental.Delegate;
-import lombok.extern.slf4j.Slf4j;
+import java.io.*;
+import java.util.LinkedList;
+import java.util.Queue;
 
 /**
  * Helpful server for replaying a raw log to the bot.

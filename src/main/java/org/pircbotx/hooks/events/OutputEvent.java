@@ -14,14 +14,19 @@
  *
  * You should have received a copy of the GNU General Public License along with
  * PircBotX. If not, see <http://www.gnu.org/licenses/>.
+ *
+ * This is a custom version developed by Alessio Bonnforti for Azzurra IRC Network
+ * Please do not contact directly Leon Blakey in case of issue using this repository
+ * as the customization might be not done by him
  */
 package org.pircbotx.hooks.events;
 
-import java.util.List;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import org.pircbotx.PircBotX;
 import org.pircbotx.hooks.Event;
+
+import java.util.List;
 
 /**
  * A command sent to the IRC server from PircBotX

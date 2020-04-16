@@ -14,12 +14,17 @@
  *
  * You should have received a copy of the GNU General Public License along with
  * PircBotX. If not, see <http://www.gnu.org/licenses/>.
+ *
+ * This is a custom version developed by Alessio Bonnforti for Azzurra IRC Network
+ * Please do not contact directly Leon Blakey in case of issue using this repository
+ * as the customization might be not done by him
  */
 package org.pircbotx.exception;
 
-import static com.google.common.base.Preconditions.*;
 import lombok.Getter;
 import org.pircbotx.User;
+
+import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
  * A general exception for DCC errors

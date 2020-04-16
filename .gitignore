@@ -1,8 +1,12 @@
 /target/
 /.idea/
 pircbotx.iml
+src/main/resources/bot.properties
 
 #ignore eclipse
 .classpath
 .project
 .settings
+
+#ignore Intellij
+*.iml
