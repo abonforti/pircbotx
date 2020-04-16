@@ -2,6 +2,7 @@
 /.idea/
 pircbotx.iml
 src/main/resources/bot.properties
+lib/
 
 #ignore eclipse
 .classpath
