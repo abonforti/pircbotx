@@ -19,11 +19,11 @@
  * Please do not contact directly Leon Blakey in case of issue using this repository
  * as the customization might be not done by him
  */
-package com.abonforti.processor;
+package com.abonforti.service;
 
 import org.pircbotx.hooks.events.MessageEvent;
 
-public interface ChannelProcessor {
+public interface ChannelService {
 
     String process(final MessageEvent event);
 }

@@ -19,11 +19,14 @@
  * Please do not contact directly Leon Blakey in case of issue using this repository
  * as the customization might be not done by him
  */
-package com.abonforti.command;
+package com.abonforti.facade;
 
 import org.pircbotx.hooks.events.MessageEvent;
+import org.pircbotx.hooks.events.NoticeEvent;
 
-public interface ChannelCommand {
+public interface ChannelFacade {
 
     void process(final MessageEvent event);
+
+    void process(final NoticeEvent event);
 }

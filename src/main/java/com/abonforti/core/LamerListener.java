@@ -22,8 +22,8 @@
 
 package com.abonforti.core;
 
-import com.abonforti.command.ChannelCommand;
-import com.abonforti.command.impl.DefaultChannelCommand;
+import com.abonforti.facade.ChannelFacade;
+import com.abonforti.facade.impl.DefaultChannelFacade;
 import com.abonforti.utils.Config;
 import com.abonforti.utils.EventUtils;
 import org.pircbotx.Configuration.Builder;
@@ -43,8 +43,8 @@ public class LamerListener extends ListenerAdapter {
 
     @Override
     public void onMessage(final MessageEvent event) {
-        final ChannelCommand channelCommand = new DefaultChannelCommand();
-        channelCommand.process(event);
+        final ChannelFacade channelFacade = new DefaultChannelFacade();
+        channelFacade.process(event);
     }
 
     @Override
@@ -60,6 +60,12 @@ public class LamerListener extends ListenerAdapter {
            LOG.info("Got invite to join {} from {}, joining.", channel, user.getNick());
            event.getBot().sendIRC().joinChannel(channel);
        }
+    }
+
+    @Override
+    public void onNotice(final NoticeEvent event) {
+        final ChannelFacade channelFacade = new DefaultChannelFacade();
+        channelFacade.process(event);
     }
 
     @Override

@@ -19,9 +19,9 @@
  * Please do not contact directly Leon Blakey in case of issue using this repository
  * as the customization might be not done by him
  */
-package com.abonforti.processor.impl;
+package com.abonforti.service.impl;
 
-import com.abonforti.processor.ChannelProcessor;
+import com.abonforti.service.ChannelService;
 import com.abonforti.utils.Config;
 import com.abonforti.utils.db.JDBCUtils;
 import lombok.extern.slf4j.Slf4j;
@@ -35,7 +35,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 @Slf4j
-public class QuoteChannelProcessor implements ChannelProcessor {
+public class DefaultQuoteChannelService implements ChannelService {
 
     private static final String ADDQUOTE = "addquote";
     private static final String DELQUOTE = "delquote";

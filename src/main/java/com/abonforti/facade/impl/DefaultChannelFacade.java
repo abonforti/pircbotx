@@ -19,22 +19,29 @@
  * Please do not contact directly Leon Blakey in case of issue using this repository
  * as the customization might be not done by him
  */
-package com.abonforti.command.impl;
+package com.abonforti.facade.impl;
 
-import com.abonforti.command.ChannelCommand;
-import com.abonforti.processor.ChannelProcessor;
-import com.abonforti.processor.impl.QuoteChannelProcessor;
+import com.abonforti.facade.ChannelFacade;
+import com.abonforti.service.ChannelService;
+import com.abonforti.service.NoticeService;
+import com.abonforti.service.impl.DefaultNoticeChannelService;
+import com.abonforti.service.impl.DefaultQuoteChannelService;
 import org.apache.commons.lang3.StringUtils;
 import org.pircbotx.Colors;
+import org.pircbotx.User;
 import org.pircbotx.hooks.events.MessageEvent;
+import org.pircbotx.hooks.events.NoticeEvent;
 import org.pircbotx.hooks.types.GenericMessageEvent;
 
 import java.util.regex.Pattern;
 
-public class DefaultChannelCommand implements ChannelCommand {
+public class DefaultChannelFacade implements ChannelFacade {
 
     private static final char COMMAND_PREFIX = '\u0021';
     private static final String LINE_SEPARATOR = System.getProperty("line.separator");
+
+    private static final String KICK_COMMAND = "kick";
+    private static final String BAN_COMMAND = "ban";
 
     private static final Pattern QUOTE_PATTERN = Pattern.compile("^(?:addquote|quote|delquote|findquote)$");
 
@@ -48,12 +55,41 @@ public class DefaultChannelCommand implements ChannelCommand {
             if(StringUtils.equals(command, "help")) {
                 printHelpMessage(event);
             } else if(QUOTE_PATTERN.matcher(command).find()) {
-                final ChannelProcessor processor = new QuoteChannelProcessor();
+                final ChannelService channelService = new DefaultQuoteChannelService();
                 final String nick = event.getUser().getNick();
-                final String result = processor.process(event);
+                final String result = channelService.process(event);
                 event.getBot().sendIRC().message(channel, result);
             }
         }
+    }
+
+    @Override
+    public void process(final NoticeEvent event) {
+        final String message = event.getNotice();
+        final String command = StringUtils.split(message, " ")[0];
+        final String strippedMessage = StringUtils.trim(StringUtils.removeStart(message, command));
+        final NoticeService noticeService = new DefaultNoticeChannelService();
+
+        switch(command) {
+            case KICK_COMMAND:
+                kick(noticeService, event, strippedMessage);
+                break;
+            case BAN_COMMAND:
+                final String user = StringUtils.split(strippedMessage, " ")[0];
+                String userHostMask = StringUtils.EMPTY;
+                for (final User u : event.getChannel().getUsers()) {
+                    if (u.getNick().equals(user)) {
+                        userHostMask = u.getHostmask();
+                    }
+                }
+
+                event.getBot().sendIRC().mode(event.getChannel().getName(), "+b *!*@" + StringUtils.split(userHostMask,"@")[1]);
+                kick(noticeService, event, strippedMessage);
+        }
+    }
+
+    private void kick(final NoticeService noticeService, NoticeEvent event, String strippedMessage) {
+        noticeService.process(event, strippedMessage);
     }
 
     private void printHelpMessage(final GenericMessageEvent event) {
