@@ -22,6 +22,8 @@
 
 package com.abonforti.core;
 
+import com.abonforti.command.ChannelCommand;
+import com.abonforti.command.impl.DefaultChannelCommand;
 import com.abonforti.utils.Config;
 import com.abonforti.utils.EventUtils;
 import org.pircbotx.Configuration.Builder;
@@ -29,11 +31,7 @@ import org.pircbotx.PircBotX;
 import org.pircbotx.User;
 import org.pircbotx.UtilSSLSocketFactory;
 import org.pircbotx.hooks.ListenerAdapter;
-import org.pircbotx.hooks.events.InviteEvent;
-import org.pircbotx.hooks.events.KickEvent;
-import org.pircbotx.hooks.events.PrivateMessageEvent;
-import org.pircbotx.hooks.events.VersionEvent;
-import org.pircbotx.hooks.types.GenericMessageEvent;
+import org.pircbotx.hooks.events.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -43,11 +41,10 @@ public class LamerListener extends ListenerAdapter {
 
     private static final Logger LOG = LoggerFactory.getLogger(LamerListener.class);
 
-    public static PircBotX bot;
-
     @Override
-    public void onGenericMessage(final GenericMessageEvent event) {
-
+    public void onMessage(final MessageEvent event) {
+        final ChannelCommand channelCommand = new DefaultChannelCommand();
+        channelCommand.process(event);
     }
 
     @Override
@@ -57,8 +54,6 @@ public class LamerListener extends ListenerAdapter {
 
     @Override
     public void onInvite(final InviteEvent event) {
-       final Config config = Config.getInstance();
-
         final String channel = event.getChannel();
         final User user = event.getUser();
         if(EventUtils.isAdmin(event) || EventUtils.isKnownChannel(event)) {
@@ -93,6 +88,7 @@ public class LamerListener extends ListenerAdapter {
         builder.addAutoJoinChannels(channels);
         builder.addListener(new LamerListener());
         builder.setAutoReconnect(config.isAutoReconnect());
+        builder.setNickservPassword(config.getNickservPassword());
 
         final PircBotX bot = new PircBotX(builder.buildConfiguration());
 
