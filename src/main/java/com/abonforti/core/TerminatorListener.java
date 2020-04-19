@@ -37,9 +37,9 @@ import org.slf4j.LoggerFactory;
 
 import java.util.Arrays;
 
-public class LamerListener extends ListenerAdapter {
+public class TerminatorListener extends ListenerAdapter {
 
-    private static final Logger LOG = LoggerFactory.getLogger(LamerListener.class);
+    private static final Logger LOG = LoggerFactory.getLogger(TerminatorListener.class);
 
     @Override
     public void onMessage(final MessageEvent event) {
@@ -92,7 +92,7 @@ public class LamerListener extends ListenerAdapter {
         builder.setSocketFactory(new UtilSSLSocketFactory().trustAllCertificates());
         // builder.setSocketFactory(new UtilSSLSocketFactory().disableDiffieHellman());
         builder.addAutoJoinChannels(channels);
-        builder.addListener(new LamerListener());
+        builder.addListener(new TerminatorListener());
         builder.setAutoReconnect(config.isAutoReconnect());
         builder.setNickservPassword(config.getNickservPassword());
 
