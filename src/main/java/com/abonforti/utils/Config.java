@@ -51,13 +51,16 @@ public class Config {
     private String login;
 
     @Getter
-    private String[] realName;
+    private String realName;
 
     @Getter
     private String nickservPassword;
 
     @Getter
     private String ircServer;
+
+    @Getter
+    private String serverPassword;
 
     @Getter
     private String[] channels;
@@ -120,10 +123,11 @@ public class Config {
 
             nick = properties.getString("bot.nickname");
             login = properties.getString("bot.ident");
-            realName = properties.getStringArray("bot.realname");
+            realName = properties.getString("bot.realname");
             nickservPassword = properties.getString("bot.nickserv.password");
             ircServer = properties.getString("irc.server.host");
             ircPort = properties.getInt("irc.server.port");
+            serverPassword = properties.getString("irc.server.password", StringUtils.EMPTY);
             useSSL = Boolean.parseBoolean(properties.getString("irc.ssl.enabled"));
             autoReconnect = Boolean.parseBoolean(properties.getString("bot.enable.auto.reconnect"));
             rejoinOnKick = Boolean.parseBoolean(properties.getString("irc.rejoin.on.kick"));

@@ -26,6 +26,7 @@ import com.abonforti.facade.ChannelFacade;
 import com.abonforti.facade.impl.DefaultChannelFacade;
 import com.abonforti.utils.Config;
 import com.abonforti.utils.EventUtils;
+import org.apache.commons.lang.StringUtils;
 import org.pircbotx.Configuration.Builder;
 import org.pircbotx.PircBotX;
 import org.pircbotx.User;
@@ -49,7 +50,16 @@ public class TerminatorListener extends ListenerAdapter {
 
     @Override
     public void onPrivateMessage(final PrivateMessageEvent event) {
-
+        String message = event.getMessage();
+        if(StringUtils.startsWith(message, "say") && EventUtils.isAdmin(event)) {
+            message = StringUtils.removeStart(message, "say ");
+            final String[] raw = StringUtils.split(message, " ");
+            final StringBuilder replyText = new StringBuilder(StringUtils.EMPTY);
+            for (int i = 1; i < raw.length; i++) {
+                replyText.append(raw[i]).append(" ");
+            }
+            event.getBot().sendIRC().message(StringUtils.trim(raw[0]), StringUtils.trim(replyText.toString()));
+        }
     }
 
     @Override
@@ -89,6 +99,7 @@ public class TerminatorListener extends ListenerAdapter {
         builder.setLogin(config.getLogin());
         builder.setRealName(config.getRealName());
         builder.addServer(config.getIrcServer(), config.getIrcPort());
+        builder.setServerPassword(config.getServerPassword());
         builder.setSocketFactory(new UtilSSLSocketFactory().trustAllCertificates());
         // builder.setSocketFactory(new UtilSSLSocketFactory().disableDiffieHellman());
         builder.addAutoJoinChannels(channels);
