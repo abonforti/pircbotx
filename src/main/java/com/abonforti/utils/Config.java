@@ -103,10 +103,9 @@ public class Config {
         return instance;
     }
 
-    public static Config reloadConfig() {
+    public static void reloadConfig() {
         log.info("Reloading configuration...");
         instance = new Config();
-        return getInstance();
     }
 
     private Config() {
@@ -118,6 +117,7 @@ public class Config {
            log.error("Unable to configure the bot! {}", ex.getMessage(), ex);
         }
         if(properties != null) {
+            log.info("Loading configurations...");
             properties.setListDelimiter(COMMA_DELIMITER);
             properties.reload();
 

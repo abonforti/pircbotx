@@ -26,6 +26,8 @@ import com.abonforti.service.ChannelService;
 import com.abonforti.service.NoticeService;
 import com.abonforti.service.impl.DefaultNoticeChannelService;
 import com.abonforti.service.impl.DefaultQuoteChannelService;
+import com.abonforti.utils.Config;
+import com.abonforti.utils.EventUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.pircbotx.Colors;
 import org.pircbotx.User;
@@ -59,6 +61,8 @@ public class DefaultChannelFacade implements ChannelFacade {
                 final String nick = event.getUser().getNick();
                 final String result = channelService.process(event);
                 event.getBot().sendIRC().message(channel, result);
+            } else if (StringUtils.equals(command, "reload") && EventUtils.isAdmin(event)) {
+                Config.reloadConfig();
             }
         }
     }
