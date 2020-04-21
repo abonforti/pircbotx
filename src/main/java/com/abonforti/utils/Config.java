@@ -51,7 +51,7 @@ public class Config {
     private String login;
 
     @Getter
-    private String realName;
+    private String[] realName;
 
     @Getter
     private String nickservPassword;
@@ -120,7 +120,7 @@ public class Config {
 
             nick = properties.getString("bot.nickname");
             login = properties.getString("bot.ident");
-            realName = properties.getString("bot.realname");
+            realName = properties.getStringArray("bot.realname");
             nickservPassword = properties.getString("bot.nickserv.password");
             ircServer = properties.getString("irc.server.host");
             ircPort = properties.getInt("irc.server.port");
