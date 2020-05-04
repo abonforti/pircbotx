@@ -41,6 +41,7 @@ public class DefaultQuoteChannelService implements ChannelService {
     private static final String DELQUOTE = "delquote";
     private static final String QUOTE = "quote";
     private static final String FINDQUOTE = "findquote";
+    private static final String MOSCONI = "mosconi";
 
 
     @Override
@@ -64,6 +65,9 @@ public class DefaultQuoteChannelService implements ChannelService {
                     break;
                 case FINDQUOTE:
                     reply = findQuote(text, channel);
+                    break;
+                case MOSCONI:
+                    reply = mosconi();
                     break;
             }
         }
@@ -102,6 +106,32 @@ public class DefaultQuoteChannelService implements ChannelService {
             ps.close();
         } catch (final SQLException ex) {
             log.error("There were an error by deleting quote to the db: {}", ex.getMessage(), ex);
+        } finally {
+            JDBCUtils.closeConnection();
+        }
+        return result;
+    }
+
+    private String mosconi() {
+        final Connection c = JDBCUtils.getConnection();
+        final ResultSet rs;
+        final PreparedStatement ps;
+        String result = StringUtils.EMPTY;
+
+        try {
+            final String query = "SELECT quote FROM `mosconi` ORDER BY RAND() LIMIT 1;";
+            ps = c.prepareStatement(query);
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                result = returnMosconi(rs);
+            }
+
+            rs.close();
+            ps.close();
+            return result;
+        } catch (final SQLException ex) {
+            log.error("There were an error by picking a random mosconi quote: {}", ex.getMessage(), ex);
         } finally {
             JDBCUtils.closeConnection();
         }
@@ -177,6 +207,10 @@ public class DefaultQuoteChannelService implements ChannelService {
                 " | " + Colors.BOLD + "Quote: " + Colors.NORMAL + rs.getString("text") +
                 " | " + Colors.BOLD + "User: " + Colors.NORMAL + rs.getString("user") +
                 " | " + Colors.BOLD + "Date: " + rs.getString("date");
+    }
+
+    private String returnMosconi(final ResultSet rs) throws SQLException {
+        return Colors.BOLD + "Germano Mosconi disse: " + Colors.NORMAL + rs.getString("quote");
     }
 
     private boolean isQuoteModuleEnabled(final String chan) {

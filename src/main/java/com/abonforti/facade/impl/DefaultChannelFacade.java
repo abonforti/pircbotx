@@ -56,7 +56,7 @@ public class DefaultChannelFacade implements ChannelFacade {
             final String channel = event.getChannel().getName();
             if(StringUtils.equals(command, "help")) {
                 printHelpMessage(event);
-            } else if(QUOTE_PATTERN.matcher(command).find()) {
+            } else if(QUOTE_PATTERN.matcher(command).find() || StringUtils.equals(command, "mosconi")) {
                 final ChannelService channelService = new DefaultQuoteChannelService();
                 final String nick = event.getUser().getNick();
                 final String result = channelService.process(event);
