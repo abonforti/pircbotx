@@ -46,6 +46,7 @@ public class DefaultChannelFacade implements ChannelFacade {
     private static final String BAN_COMMAND = "ban";
 
     private static final Pattern QUOTE_PATTERN = Pattern.compile("^(?:addquote|quote|delquote|findquote)$");
+    private static final Pattern FANCY_COMMAND_PATTERN = Pattern.compile("^(?:op|deop|hop|dehop|voice|devoice)$");
 
 
     @Override
@@ -63,6 +64,12 @@ public class DefaultChannelFacade implements ChannelFacade {
                 event.getBot().sendIRC().message(channel, result);
             } else if (StringUtils.equals(command, "reload") && EventUtils.isAdmin(event)) {
                 Config.reloadConfig();
+            } else if (FANCY_COMMAND_PATTERN.matcher(command).find()) {
+                final ChannelService channelService = new DefaultChannelService();
+                final String result = channelService.process(event);
+                if(StringUtils.isNotEmpty(result)) {
+                    event.getBot().sendIRC().message(channel, result);
+                }
             }
         }
     }
@@ -104,8 +111,9 @@ public class DefaultChannelFacade implements ChannelFacade {
                 LINE_SEPARATOR + Colors.BOLD + "!delquote number " + Colors.NORMAL + "- Removes a quote from the db." +
                 LINE_SEPARATOR + Colors.BOLD + "!findquote text " + Colors.NORMAL + "- Searches for a quote id." +
                 LINE_SEPARATOR + Colors.BOLD + "!quote " + Colors.NORMAL + "- Prints a random quote" +
-                LINE_SEPARATOR + Colors.BOLD + "!quote number " + Colors.NORMAL + "- Prints the corresponding quote.";
+                LINE_SEPARATOR + Colors.BOLD + "!quote number " + Colors.NORMAL + "- Prints the corresponding quote." +
+                LINE_SEPARATOR + Colors.BOLD + "!op user, !deop user, !hop user, !dehop user, !voice user, !devoice user " + Colors.NORMAL + "- pretty much self explaining";
 
-        event.respondWith(text);
+        event.getBot().sendIRC().notice(event.getUser().getNick(), text);
     }
 }
