@@ -39,7 +39,7 @@ import java.util.regex.Pattern;
 
 public class DefaultChannelFacade implements ChannelFacade {
 
-    private static final char COMMAND_PREFIX = '\u0021';
+    private static final String COMMAND_PREFIX = "!";
     private static final String LINE_SEPARATOR = System.getProperty("line.separator");
 
     private static final String KICK_COMMAND = "kick";
@@ -52,7 +52,7 @@ public class DefaultChannelFacade implements ChannelFacade {
     @Override
     public void process(final MessageEvent event) {
         final String message = event.getMessage();
-        if(message.charAt(0) >= COMMAND_PREFIX) {
+        if(StringUtils.startsWith(message, COMMAND_PREFIX)) {
             final String command = StringUtils.split(StringUtils.remove(message, COMMAND_PREFIX))[0];
             final String channel = event.getChannel().getName();
             if(StringUtils.equals(command, "help")) {
