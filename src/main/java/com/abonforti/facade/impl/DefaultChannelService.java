@@ -44,13 +44,14 @@ public class DefaultChannelService implements ChannelService {
 
     @Override
     public String process(final MessageEvent event) {
-        String reply = "Fancy module not enabled for the current channel!";
         final String channel = StringUtils.removeStart(event.getChannel().getName(), "#");
         final String message = event.getMessage();
         final String command = StringUtils.lowerCase(StringUtils.removeStart(StringUtils.split(message, " ")[0], "!"));
         final String targetUser = StringUtils.removeStart(message, "!" + command + " ");
         if(isFancyModuleEnabled(channel)) {
-            reply = StringUtils.EMPTY;
+            if(StringUtils.isEmpty(targetUser)) {
+                return "Wrong argument detected, please specify who execute the command on.";
+            }
             switch (command) {
                 case OP_COMMAND:
                     handleOpOrHalfop(event, targetUser, "+o");
@@ -72,7 +73,7 @@ public class DefaultChannelService implements ChannelService {
                     break;
             }
         }
-        return reply;
+        return StringUtils.EMPTY;
     }
 
     protected void handleOpOrHalfop(final MessageEvent event, final String targetUser, final String mode) {

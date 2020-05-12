@@ -66,10 +66,7 @@ public class DefaultChannelFacade implements ChannelFacade {
                 Config.reloadConfig();
             } else if (FANCY_COMMAND_PATTERN.matcher(command).find()) {
                 final ChannelService channelService = new DefaultChannelService();
-                final String result = channelService.process(event);
-                if(StringUtils.isNotEmpty(result)) {
-                    event.getBot().sendIRC().message(channel, result);
-                }
+                channelService.process(event);
             }
         }
     }
