@@ -45,7 +45,7 @@ public class DefaultChannelFacade implements ChannelFacade {
     private static final String KICK_COMMAND = "kick";
     private static final String BAN_COMMAND = "ban";
 
-    private static final Pattern QUOTE_PATTERN = Pattern.compile("^(?:addquote|quote|delquote|findquote)$");
+    private static final Pattern QUOTE_PATTERN = Pattern.compile("^(?:addquote|quote|delquote|findquote|lastquote)$");
     private static final Pattern FANCY_COMMAND_PATTERN = Pattern.compile("^(?:op|deop|hop|dehop|voice|devoice)$");
 
 

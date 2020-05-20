@@ -41,6 +41,7 @@ public class DefaultQuoteChannelService implements ChannelService {
     private static final String DELQUOTE = "delquote";
     private static final String QUOTE = "quote";
     private static final String FINDQUOTE = "findquote";
+    private static final String LASTQUOTE = "lastquote";
     private static final String MOSCONI = "mosconi";
 
 
@@ -65,6 +66,9 @@ public class DefaultQuoteChannelService implements ChannelService {
                     break;
                 case FINDQUOTE:
                     reply = findQuote(text, channel);
+                    break;
+                case LASTQUOTE:
+                    reply = lastquote(channel);
                     break;
                 case MOSCONI:
                     reply = mosconi();
@@ -132,6 +136,30 @@ public class DefaultQuoteChannelService implements ChannelService {
             return result;
         } catch (final SQLException ex) {
             log.error("There were an error by picking a random mosconi quote: {}", ex.getMessage(), ex);
+        } finally {
+            JDBCUtils.closeConnection();
+        }
+        return result;
+    }
+
+    private String lastquote(final String channel) {
+        final Connection c = JDBCUtils.getConnection();
+        final ResultSet rs;
+        final PreparedStatement ps;
+        String result = StringUtils.EMPTY;
+
+        try {
+            final String query = "SELECT * FROM `" + channel + "` ORDER BY id DESC LIMIT 1;";
+            ps = c.prepareStatement(query);
+            rs = ps.executeQuery();
+            while(rs.next()) {
+                result = returnQuote(rs);
+            }
+
+            rs.close();
+            ps.close();
+        } catch (final SQLException ex) {
+            log.error("There were an error by picking a random quote: {}", ex.getMessage(), ex);
         } finally {
             JDBCUtils.closeConnection();
         }
